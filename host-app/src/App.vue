@@ -1,21 +1,34 @@
 <script setup>
-import { defineAsyncComponent } from 'vue';
+import {defineAsyncComponent, ref} from 'vue';
 
 const Button = defineAsyncComponent(() => import('remote_app/Button'));
 const CountDown = defineAsyncComponent(() => import('remote_app/CountDown'));
+
+const time = ref(20);
+
+const handleTimeUpdate = (_time) => {
+  time.value = _time;
+};
+
+const handleFinished = () => {
+  console.log('计时结束');
+};
 </script>
 
 <template>
   <div
-    style="
+      style="
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-start;
     "
   >
-    <Button />
-    <CountDown :time="10" />
+    <Button/>
+    <CountDown :time="time"
+               @update:time="handleTimeUpdate"
+               @finished="handleFinished"
+    />
   </div>
 </template>
 

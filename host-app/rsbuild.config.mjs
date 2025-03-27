@@ -10,7 +10,7 @@ export default defineConfig({
         options: {
             name: 'host_app',
             remotes: {
-                remote_app: "remote_app@http://localhost:3001/remoteEntry.js",
+                remote_app: "remote_app@http://localhost:8000/remoteEntry.js",
             }
         }
     }

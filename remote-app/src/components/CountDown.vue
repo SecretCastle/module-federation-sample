@@ -1,33 +1,36 @@
+<template>
+  <div>剩余时间: {{ curTime }}秒</div>
+</template>
+
 <script setup>
-import { onMounted, ref } from 'vue';
+import {ref, watch, onUnmounted} from 'vue'
+
+defineOptions({
+  name: 'CountDown',
+})
 
 const props = defineProps({
-  time: {
-    type: Number,
-    default: 10,
-    required: true,
-  },
-});
-let timer = null;
-const cur_time = ref(props.time || 0);
+  time: {type: Number, required: true}
+})
 
-const start = () => {
-  if (timer) {
-    return;
+const emit = defineEmits(['update:time', 'finished'])
+
+const curTime = ref(props.time)
+
+// 监听props变化重置计时器
+watch(() => props.time, (newVal) => {
+  curTime.value = newVal
+})
+
+const timer = setInterval(() => {
+  if (curTime.value > 0) {
+    curTime.value--
+    emit('update:time', curTime.value) // 通知主机应用
+  } else {
+    clearInterval(timer)
+    emit('finished') // 通知计时结束
   }
-  timer = setInterval(() => {
-    cur_time.value -= 1;
-    if (cur_time.value <= 0) {
-      clearInterval(timer);
-      timer = null;
-    }
-  }, 1000);
-};
-</script>
+}, 1000)
 
-<template>
-  <div style="display: flex; flex-direction: row">
-    <span>倒计时: {{ cur_time }}</span>
-    <button @click="start">开始</button>
-  </div>
-</template>
+onUnmounted(() => clearInterval(timer))
+</script>
