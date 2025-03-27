@@ -4,16 +4,7 @@ import {pluginVue} from '@rsbuild/plugin-vue';
 export default defineConfig({
     plugins: [pluginVue()],
     server: {
-        port: 3000,
-        // proxy: {
-        //     './remoteEntry.js': {
-        //         target: 'http://localhost:8000',
-        //         changeOrigin: true,
-        //         pathRewrite: {
-        //             '^/remoteEntry.js': '/remoteEntry.js'
-        //         }
-        //     }
-        // }
+        port: 3000
     },
     moduleFederation: {
         options: {
