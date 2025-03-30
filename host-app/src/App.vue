@@ -1,5 +1,9 @@
 <script setup>
 import {defineAsyncComponent, ref} from 'vue';
+import {formatDate} from '@shared/tools'
+
+
+console.log(formatDate(Date.now()));
 
 const Button = defineAsyncComponent(() => import('remote_app/Button'));
 const CountDown = defineAsyncComponent(() => import('remote_app/CountDown'));

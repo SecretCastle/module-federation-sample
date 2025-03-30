@@ -1,5 +1,5 @@
 <template>
-  <div>剩余时间: {{ curTime }}秒</div>
+  <div class="count_down">剩余时间: {{ curTime }}秒</div>
 </template>
 
 <script setup>
@@ -34,3 +34,9 @@ const timer = setInterval(() => {
 
 onUnmounted(() => clearInterval(timer))
 </script>
+
+<style>
+.count_down {
+  color: var(--primary-color);
+}
+</style>
