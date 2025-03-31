@@ -1,7 +1,6 @@
 <script setup>
-import {defineAsyncComponent, ref} from 'vue';
-import {formatDate} from '@shared/tools'
-
+import { defineAsyncComponent, ref } from 'vue';
+import { formatDate } from '@shared';
 
 console.log(formatDate(Date.now()));
 
@@ -21,17 +20,18 @@ const handleFinished = () => {
 
 <template>
   <div
-      style="
+    style="
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       justify-content: flex-start;
     "
   >
-    <Button/>
-    <CountDown :time="time"
-               @update:time="handleTimeUpdate"
-               @finished="handleFinished"
+    <Button />
+    <CountDown
+      :time="time"
+      @update:time="handleTimeUpdate"
+      @finished="handleFinished"
     />
   </div>
 </template>

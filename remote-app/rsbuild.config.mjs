@@ -6,7 +6,7 @@ import * as path from "node:path";
 export default defineConfig({
     output: {
         // 初步探索：remote-app打包成公共产物后，需要加上一个prefix前缀，可让host-app访问到打包产物中的js文件
-        // assetPrefix: 'http://localhost:8000'
+        assetPrefix: 'http://localhost:8000'
     },
     plugins: [pluginVue()],
     server: {
